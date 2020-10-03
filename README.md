@@ -8,7 +8,7 @@ A script to get the ranges and their information by scrapping IPv4info
 python3 main.py [-c COMPANIES_FILE] [-C COMPANIES_LIST] [-f COUNTRY_FILTER] [-o OUTPUT_FILE] [-d]
 ```
 
-The parameters for the attacks are:
+The parameters are:
 
 	* -C: Comma-separated list of companies. Example: -C google,yahoo,youtube
 	
