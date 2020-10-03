@@ -1,5 +1,6 @@
 # ipv4infoScraper
 
+A script to get the ranges and their information by scrapping IPv4info
 
 ## Usage
 

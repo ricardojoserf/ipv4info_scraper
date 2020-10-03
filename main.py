@@ -6,8 +6,8 @@ import json
 import requests
 import argparse
 from bs4 import BeautifulSoup
-
 ipv4_base_url = "http://ipv4info.com"
+
 
 def get_args():
 	parser = argparse.ArgumentParser()
@@ -16,7 +16,6 @@ def get_args():
 	parser.add_argument('-f', '--country_filter',  required=False, action='store', help='Country filter for the list of IP ranges calculated in IPv4info')
 	parser.add_argument('-o', '--output_file',     required=False, default="output.txt", action='store', help='Output directory')
 	parser.add_argument('-d', '--debug',           required=False, default=False, action='store_true', help='Debug mode')
-	#my_args = parser.parse_args()
 	return parser
 
 
@@ -93,6 +92,7 @@ def get_ranges(company_name, target_countries, debug):
 	return ranges_info
 
 
+# Call get_ranges() for each company name
 def calculate_companies(companies, target_countries,debug):
 	try:
 		all_ranges = []
