@@ -13,11 +13,11 @@ def get_args():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-c', '--companies_file',  required=False, default=None, action='store', help='File with companies to analyze')
 	parser.add_argument('-C', '--companies_list',  required=False, default=None, action='store', help='Comma separated list of companies')
-	parser.add_argument('-cf', '--country_filter', required=False, action='store', help='Country filter for the list of IP ranges calculated in IPv4info')
+	parser.add_argument('-f', '--country_filter',  required=False, action='store', help='Country filter for the list of IP ranges calculated in IPv4info')
 	parser.add_argument('-o', '--output_file',     required=False, default="output.txt", action='store', help='Output directory')
 	parser.add_argument('-d', '--debug',           required=False, default=False, action='store_true', help='Debug mode')
-	my_args = parser.parse_args()
-	return my_args
+	#my_args = parser.parse_args()
+	return parser
 
 
 # Get url from IPv4info
@@ -105,8 +105,21 @@ def calculate_companies(companies, target_countries,debug):
 
 
 def main():
-	args = get_args()
-	companies = open(args.companies_file).read().splitlines() if args.companies_file is not None else args.companies_list.split(",")
+	parser = get_args()
+	args = parser.parse_args()
+	if args.companies_file is not None:
+		if os.path.isfile(args.companies_file):
+			companies = open(args.companies_file).read().splitlines()  
+		else:
+			print("\n[-] ERROR: File not found\n")
+			parser.print_help()
+			sys.exit(0)
+	elif args.companies_list is not None: 
+		companies = args.companies_list.split(",")
+	else:
+		print("\n[-] ERROR: It is necessary to use -c or -C parameters\n")
+		parser.print_help()
+		sys.exit(0)
 	target_countries = args.country_filter.split(",") if args.country_filter is not None else None
 	output_file = args.output_file
 	debug = args.debug
