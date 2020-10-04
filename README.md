@@ -1,6 +1,6 @@
 # IPv4Info Scraper
 
-A script to get the ranges and their information by scrapping IPv4info
+Get the IP blocks and their domains from a company name by scrapping IPv4info
 
 ## Usage
 
